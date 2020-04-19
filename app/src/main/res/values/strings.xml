@@ -1,0 +1,113 @@
+<resources>
+    <!--Main Log-In Activity-->
+    <string name="app_name">GMC Customer Orders</string>
+    <string name="login_button">Login</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="mainbgdesc">Main Background Image</string>
+    <string name="scanqr">Scan QR Image</string>
+    <string name="username_autofillhint">username</string>
+    <string name="password_autofillhint">password</string>
+
+    <!--Scan QR code view strings-->
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Barcode Reader Sample</string>
+    <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
+    <string name="read_barcode">Read Barcode</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="barcode_success">Barcode read successfully</string>
+    <string name="barcode_failure">No barcode captured</string>
+    <string name="barcode_error">"Error reading barcode: %1$s"</string>
+    <string name="barcode_cancel">Cancel</string>
+    <string name="dialog_ok">Ok</string>
+
+    <!--Main Menu Strings-->
+    <string name="main_menu_header">Main Menu</string>
+    <string name="main_menu_loggedinas">Logged in as:</string>
+    <string name="main_menu_neworder">New Order</string>
+    <string name="main_menu_printorders">Print Orders</string>
+    <string name="main_menu_manageorders">Manage Orders</string>
+    <string name="main_menu_settings">Settings</string>
+    <string name="main_menu_usermanagement">User Management</string>
+    <string name="main_menu_reprintmasterqrcode">Re-Print Master Password QR Code</string>
+    <string name="main_menu_logout">Log Out</string>
+
+    <!--User Information Activity-->
+    <string name="headertext">Create User</string>
+    <string name="usernamehint">Username</string>
+    <string name="passwordhint">Password</string>
+    <string name="repeatpasswordhint">Repeat Password</string>
+    <string name="chk_ismanager">Is user a Manager?</string>
+    <string name="ok_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+
+    <!--Customer Information Activity-->
+    <string name="cust_info_header">Customer Information</string>
+    <string name="cust_info_customername">Customer Name</string>
+    <string name="cust_info_address">Address</string>
+    <string name="cust_info_phone">Phone Number</string>
+    <string name="cust_info_email">Email Address</string>
+    <string name="cust_info_btncall">Call</string>
+    <string name="cust_info_emailbtn">Email</string>
+    <string name="cust_info_cancel">Cancel</string>
+    <string name="cust_info_close">Close</string>
+    <string name="cust_info_save">Save</string>
+    <string name="cust_info_edit">Edit</string>
+
+    <!--Customer Management Activity-->
+    <string name="cust_management_header">Customer Management</string>
+    <string name="cust_management_done">Done</string>
+    <string name="cust_management_add">Add Customer</string>
+
+    <!--Item Database Management Activity-->
+    <string name="itemdb_management_header">Item Database</string>
+    <string name="itemdb_management_done">Done</string>
+    <string name="itemdb_management_add">Add New Item</string>
+
+    <!--Item Editor Activity-->
+    <string name="item_editor_header">Item Information</string>
+    <string name="item_editor_itemdescription">Item Description</string>
+    <string name="item_editor_done">Done</string>
+    <string name="item_editor_cancel">Cancel</string>
+
+    <!--New Order Activity-->
+    <string name="neworder_header_new">New Order</string>
+    <string name="neworder_header">Order Details</string>
+    <string name="neworder_customerinfo">Customer Information</string>
+    <string name="neworder_orderdetails">Order Details</string>
+    <string name="neworder_deliver">Is this order for delivery?</string>
+    <string name="neworder_ordertotal">Order Total</string>
+    <string name="neworder_notes">Notes:</string>
+    <string name="neworder_printlabel"> Print Order Label</string>
+    <string name="neworder_printorder">Print Order</string>
+    <string name="neworder_cancel">Cancel</string>
+    <string name="neworder_save">Save</string>
+    <string name="neworder_viewcard">Customer Information Card</string>
+    <string name="neworder_call">Call Customer</string>
+    <string name="neworder_additem">Add Item To Order</string>
+    <string name="neworder_hint">Help</string>
+    <string name="neworder_notes_hint">Enter any extra details required for this order.</string>
+    <string name="neworder_ordercomplete">Order Complete</string>
+
+    <!--Order Management Activity-->
+    <string name="ordermgmt_header">Available Orders</string>
+    <string name="ordermgmt_ordersfordate">Orders For Date:</string>
+    <string name="ordermgmt_showunfilled">Show Un-Filled Orders</string>
+    <string name="ordermgmt_done">Done</string>
+    <string name="ordermgmt_seldate">Select Date</string>
+
+    <!--Settings Activity-->
+    <string name="settings_header">Settings</string>
+
+    <!--User Management Activity-->
+    <string name="userdb_header">User Management</string>
+    <string name="userdb_adduser">Add New User</string>
+    <string name="userdb_done">Done</string>
+
+    <!--MessageDialog ButtonText-->
+    <string name="okbuttontext">Ok</string>
+</resources>

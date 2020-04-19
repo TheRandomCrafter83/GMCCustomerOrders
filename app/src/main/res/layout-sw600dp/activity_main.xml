@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/mainBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#ffffffff"
+        android:contentDescription="@string/mainbgdesc"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/test_background" />
+
+    <View
+        android:id="@+id/buttonHolder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="325dp"
+        android:background="@drawable/round_rect"
+        app:layout_constraintBottom_toBottomOf="@+id/mainBackground"
+        app:layout_constraintEnd_toEndOf="@+id/mainBackground"
+        app:layout_constraintStart_toStartOf="@+id/mainBackground"
+        app:layout_constraintTop_toTopOf="@+id/mainBackground" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/DarkBlueGray"
+        android:text="@string/login_button"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonHolder"
+        app:layout_constraintEnd_toStartOf="@id/image_ScanQR"
+        app:layout_constraintStart_toStartOf="@+id/buttonHolder"
+        app:layout_constraintTop_toBottomOf="@id/edit_Password"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/edit_Username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="@string/username_autofillhint"
+        android:background="@drawable/edittext"
+        android:ems="10"
+        android:hint="@string/username_hint"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/HintColor"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/edit_Password"
+        app:layout_constraintEnd_toEndOf="@+id/buttonHolder"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonHolder"
+        app:layout_constraintTop_toTopOf="@+id/buttonHolder" />
+
+    <EditText
+        android:id="@+id/edit_Password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="@string/password_autofillhint"
+        android:background="@drawable/edittext"
+        android:ems="10"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textColorHint="@color/HintColor"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
+        app:layout_constraintEnd_toEndOf="@+id/edit_Username"
+        app:layout_constraintStart_toStartOf="@+id/edit_Username"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Username" />
+
+    <ImageView
+        android:id="@+id/image_ScanQR"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="64dp"
+        android:contentDescription="@string/scanqr"
+        android:scaleType="fitCenter"
+        android:tint="#4788C7"
+        app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="@+id/buttonHolder"
+        app:layout_constraintStart_toEndOf="@+id/btnLogin"
+        app:layout_constraintTop_toTopOf="@+id/btnLogin"
+        app:srcCompat="@drawable/scan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
