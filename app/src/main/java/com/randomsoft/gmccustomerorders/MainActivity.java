@@ -18,10 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTouch;
+
 
 //region Scan QR Stuff
 import android.content.Intent;
@@ -38,14 +35,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "BarcodeMain";
     View container;
     View decorView;
-    @BindView(R.id.image_ScanQR)
+
     ImageView btnScanQR;
-    @BindView(R.id.btnLogin)
     Button btn;
-    @BindView(R.id.edit_Username)
     EditText editUsername;
-    @BindView(R.id.edit_Password)
     EditText editPassword;
+
+
     String scannedQR_Code="";
     String errorMessage="";
     ViewTreeObserver.OnGlobalLayoutListener gll = new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -72,13 +68,65 @@ public class MainActivity extends AppCompatActivity {
          return context.getResources().getString(ResID);
     }
 
+    public void initViews(){
+        ImageView btnScanQR = findViewById(R.id.image_ScanQR);
+        Button btn= findViewById(R.id.btnLogin);
+        EditText editUsername= findViewById(R.id.edit_Username);
+        EditText editPassword= findViewById(R.id.edit_Password);
+        btnScanQR.setOnClickListener(this.imageScanQRClick);
+        btn.setOnClickListener(this.btnLoginClick);
+        editUsername.setOnTouchListener(this.editTouch);
+        editPassword.setOnTouchListener(this.editTouch);
+    }
+
+    //Event Handlers-------------------------------------------------------------
+
+    final View.OnClickListener btnLoginClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getApplicationContext(),"Hello World",Toast.LENGTH_LONG).show();
+        }
+    };
+
+    final View.OnClickListener imageScanQRClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+            intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+            intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
+            startActivityForResult(intent, RC_BARCODE_CAPTURE);
+        }
+    };
+
+    final View.OnTouchListener editTouch = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN)
+            {
+                container = view.getRootView();
+                container.getViewTreeObserver().removeOnGlobalLayoutListener(gll);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        container.getViewTreeObserver().addOnGlobalLayoutListener(gll);
+                    }
+                }, 100);
+                hideSystemUI();
+            }else if(event.getAction()==MotionEvent.ACTION_UP){
+                hideSystemUI();
+            }
+
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         decorView = getWindow().getDecorView();
         hideSystemUI();
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         decorView.setOnSystemUiVisibilityChangeListener
                 (new View.OnSystemUiVisibilityChangeListener() {
                     @Override
@@ -95,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
 
         // try to show the keyboard and capture the result
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
-
         IMMResult result = new IMMResult();
         imm.showSoftInput(editUsername, 0, result);
 
@@ -121,21 +167,6 @@ public class MainActivity extends AppCompatActivity {
     public void onUserInteraction(){
         super.onUserInteraction();
         hideSystemUI();
-    }
-
-    @OnClick(R.id.btnLogin)
-    public void btn_Click(View v){
-        Toast.makeText(this,"Hello World",Toast.LENGTH_LONG).show();
-    }
-
-    @OnClick(R.id.image_ScanQR)
-    public void btnScan_Click(View v){
-        // launch barcode activity.
-        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
-        intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
-        intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
-
-        startActivityForResult(intent, RC_BARCODE_CAPTURE);
     }
 
     @Override
@@ -192,26 +223,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnTouch({R.id.edit_Username,R.id.edit_Password})
-    public boolean editUsername_onTouch(View v, MotionEvent event){
-        if (event.getAction() == MotionEvent.ACTION_DOWN)
-        {
-            container = v.getRootView();
-            container.getViewTreeObserver().removeOnGlobalLayoutListener(gll);
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    container.getViewTreeObserver().addOnGlobalLayoutListener(gll);
-                }
-            }, 100);
-            hideSystemUI();
-        }else if(event.getAction()==MotionEvent.ACTION_UP){
-            hideSystemUI();
-        }
 
-        return false;
-    }
 
     private void hideSystemUI() {
         decorView.setSystemUiVisibility(

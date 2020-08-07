@@ -15,6 +15,7 @@
  */
 package com.randomsoft.gmccustomerorders;
 
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -58,11 +59,8 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import java.io.IOException;
 
 /**
  * Activity for the multi-tracker app.  This app detects barcodes and displays the value with the
@@ -71,10 +69,10 @@ import butterknife.OnClick;
  */
 public class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
 
-    @BindView(R.id.btnCancel)
+
     Button btnCancel;
 
-    @BindView(R.id.sw_flash)
+
     Switch swFlash;
 
     View decorView;
@@ -105,6 +103,35 @@ public class BarcodeCaptureActivity extends AppCompatActivity implements Barcode
 
 
 
+    public void initControls(){
+        btnCancel = findViewById(R.id.btnCancel);
+        swFlash = findViewById(R.id.sw_flash);
+        btnCancel.setOnClickListener(this.btnCancelClick);
+        swFlash.setOnClickListener(this.swFlashClick);
+    }
+
+//Event Listeners
+
+    final View.OnClickListener btnCancelClick = new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            Intent data = new Intent();
+            setResult(CommonStatusCodes.CANCELED,data);
+            finish();
+        }
+    };
+
+
+    final View.OnClickListener swFlashClick = new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            boolean uFlash = swFlash.isChecked();
+            mPreview.stop();
+            mPreview.release();
+            createCameraSource(true,uFlash);
+            startCameraSource();
+        }
+    };
 
 
     /**
@@ -116,10 +143,10 @@ public class BarcodeCaptureActivity extends AppCompatActivity implements Barcode
         decorView = getWindow().getDecorView();
         hideSystemUI();
         setContentView(R.layout.scan_qr);
-        ButterKnife.bind(this);
+        initControls();
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
-        mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(R.id.graphicOverlay);
+        mGraphicOverlay = findViewById(R.id.graphicOverlay);
 
 
         // read parameters from the intent used to launch the activity.
@@ -513,21 +540,9 @@ public class BarcodeCaptureActivity extends AppCompatActivity implements Barcode
         }
     }
 
-    @OnClick(R.id.btnCancel)
-    public void btnCancel_Click(View v){
-        Intent data = new Intent();
-        setResult(CommonStatusCodes.CANCELED, data);
-        finish();
-    }
 
-    @OnClick(R.id.sw_flash)
-    public void swFlash_Click(View v){
-        boolean uFlash = swFlash.isChecked();
-        mPreview.stop();
-        mPreview.release();
-        createCameraSource(true,uFlash);
-        startCameraSource();
-    }
+
+
 
     private void hideSystemUI() {
         decorView.setSystemUiVisibility(
